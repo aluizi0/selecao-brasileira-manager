@@ -1,42 +1,163 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Evita barras de rolagem indesejadas */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Container principal: Lado a lado */
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: #2c3e50;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* --- SIDEBAR (Lista de Jogadores) --- */
+.sidebar {
+  width: 350px;
+  background-color: #ecf0f1;
+  overflow-y: auto;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
 
-.card {
-  padding: 2em;
+.player-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: grab;
+  transition: transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.read-the-docs {
-  color: #888;
+.player-card:hover {
+  transform: translateX(5px);
+  border-left: 5px solid #27ae60;
 }
+
+.player-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.player-info h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #34495e;
+}
+
+.player-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+/* --- CAMPO DE FUTEBOL --- */
+/* --- CAMPO DE FUTEBOL --- */
+.field-container {
+  flex: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #34495e;
+  padding: 10px;
+  position: relative;
+  overflow: auto;
+}
+
+.field {
+  /* Mantém o campo responsivo dentro do espaço disponível */
+  width: min(900px, 90%);
+  aspect-ratio: 3 / 4;
+  background-color: #27ae60;
+  border: 6px solid #ffffff;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+  box-sizing: border-box;
+  padding: 20px;
+
+  /* Linhas do campo (sutil) */
+  /* campo limpo: sem linhas adicionais */
+}
+
+/* Círculo central removido — campo sem marcações extras */
+
+/* POSIÇÕES DOS JOGADORES (4-3-3) */
+.position-slot {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px dashed rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.position-slot:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.position-slot.filled {
+  background-color: #fff;
+  border: 2px solid #f1c40f;
+}
+
+.position-slot img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.player-name-tag {
+  position: absolute;
+  bottom: -25px;
+  background: #2c3e50;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Coordenadas 4-3-3 (TopDown: Goleiro em baixo) */
+/* Goleiro */
+.pos-gk { bottom: 5%; left: 50%; }
+
+/* Defesa */
+.pos-de-1 { bottom: 25%; left: 20%; } /* LE */
+.pos-de-2 { bottom: 25%; left: 40%; } /* ZAG */
+.pos-de-3 { bottom: 25%; left: 60%; } /* ZAG */
+.pos-de-4 { bottom: 25%; left: 80%; } /* LD */
+
+/* Meio Campo */
+.pos-mid-1 { bottom: 50%; left: 30%; }
+.pos-mid-2 { bottom: 50%; left: 50%; }
+.pos-mid-3 { bottom: 50%; left: 70%; }
+
+/* Ataque */
+.pos-fwd-1 { top: 15%; left: 20%; } /* PE */
+.pos-fwd-2 { top: 15%; left: 50%; } /* CA */
+.pos-fwd-3 { top: 15%; left: 80%; } /* PD */
