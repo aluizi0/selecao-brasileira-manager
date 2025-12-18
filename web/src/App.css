@@ -82,7 +82,7 @@ body {
 
 .field {
   /* Mantém o campo responsivo dentro do espaço disponível */
-  width: min(900px, 90%);
+  width: min(800px, 90%);
   aspect-ratio: 3 / 4;
   background-color: #27ae60;
   border: 6px solid #ffffff;
